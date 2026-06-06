@@ -1,0 +1,22 @@
+# netlify.toml
+# ─────────────────────────────────────────────────────────────────────────────
+# Netlify build & deployment configuration
+# ─────────────────────────────────────────────────────────────────────────────
+
+[build]
+  # Root of the published site (the folder Netlify serves as your website)
+  publish = "."
+
+  # Where Netlify looks for serverless functions
+  functions = "netlify/functions"
+
+# Route all requests to /.netlify/functions/* automatically (Netlify default).
+# The rule below redirects the contact form's Formspree URL if you ever switch
+# to a self-hosted handler; leave it as-is for now.
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
